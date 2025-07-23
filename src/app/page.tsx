@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react/no-unescaped-entities */
 
 import React, { useState } from 'react';
 import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, Utensils, CheckCircle, Award, Sparkles, Camera } from 'lucide-react';
@@ -84,13 +85,13 @@ export default function Home() {
               onClick={() => handleAgeVerification(true)}
               className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
             >
-              Yes, I'm 21 or older
+              Yes, I&apos;m 21 or older
             </button>
             <button
               onClick={() => handleAgeVerification(false)}
               className="w-full bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-6 rounded-lg transition-colors"
             >
-              No, I'm under 21
+              No, I&apos;m under 21
             </button>
           </div>
         </div>
@@ -105,7 +106,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Utensils className="h-8 w-8" />
-            <h1 className="text-2xl font-bold">Wacko's Grill & Bar</h1>
+            <h1 className="text-2xl font-bold">Wacko&apos;s Grill &amp; Bar</h1>
           </div>
           
           {/* Desktop Navigation */}
@@ -151,7 +152,7 @@ export default function Home() {
       {/* Hero Section */}
       <section id="home" className="bg-gradient-to-r from-red-600 to-orange-500 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-5xl font-bold mb-6">Welcome to Wacko's!</h2>
+          <h2 className="text-5xl font-bold mb-6">Welcome to Wacko&apos;s!</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Where crazy good food meets an unforgettable atmosphere. Join us for the best burgers, 
             wings, and craft drinks in town!
