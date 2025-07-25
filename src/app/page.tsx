@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, Utensils, CheckCircle, Award, Sparkles, Camera } from 'lucide-react';
+import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, CheckCircle, Award, Sparkles, Camera } from 'lucide-react';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -318,7 +318,7 @@ export default function Home() {
                     <Star key={starIdx} className="h-6 w-6 fill-current" style={{color: 'var(--accent-yellow)'}} />
                   ))}
                 </div>
-                <p className="mb-6 italic leading-relaxed text-lg" style={{color: 'var(--text-secondary)'}}>"{review.text}"</p>
+                <p className="mb-6 italic leading-relaxed text-lg" style={{color: 'var(--text-secondary)'}}>&quot;{review.text}&quot;</p>
                 <p className="font-bold text-lg" style={{color: 'var(--accent-yellow)', fontFamily: 'var(--font-heading)'}}>— {review.name}</p>
               </div>
             ))}
