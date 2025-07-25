@@ -117,15 +117,13 @@ export default function Home() {
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`capitalize hover:transition-all duration-300 font-medium ${
+                className={`capitalize transition-all duration-300 font-medium hover:opacity-80 ${
                   activeSection === section ? 'border-b-2' : ''
                 }`}
                 style={{
                   color: activeSection === section ? 'var(--accent-gold)' : 'var(--text-primary)',
                   borderColor: activeSection === section ? 'var(--accent-gold)' : 'transparent'
                 }}
-                onMouseEnter={(e) => e.target.style.color = 'var(--accent-gold)'}
-                onMouseLeave={(e) => e.target.style.color = activeSection === section ? 'var(--accent-gold)' : 'var(--text-primary)'}
               >
                 {section}
               </button>
@@ -149,16 +147,8 @@ export default function Home() {
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="block w-full text-left px-4 py-3 capitalize transition-colors"
+                className="block w-full text-left px-4 py-3 capitalize transition-colors hover:opacity-80"
                 style={{color: 'var(--text-primary)'}}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = 'var(--background)';
-                  e.target.style.color = 'var(--accent-gold)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'transparent';
-                  e.target.style.color = 'var(--text-primary)';
-                }}
               >
                 {section}
               </button>
@@ -424,9 +414,9 @@ export default function Home() {
             © 2024 Wacko's Gentlemen's Club. All rights reserved. | Follow us for exclusive events and specials.
           </p>
           <div className="flex justify-center space-x-8">
-            <a href="#" className="transition-colors text-lg" style={{color: 'var(--text-secondary)'}} onMouseEnter={(e) => e.target.style.color = 'var(--accent-gold)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>Facebook</a>
-            <a href="#" className="transition-colors text-lg" style={{color: 'var(--text-secondary)'}} onMouseEnter={(e) => e.target.style.color = 'var(--accent-gold)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>Instagram</a>
-            <a href="#" className="transition-colors text-lg" style={{color: 'var(--text-secondary)'}} onMouseEnter={(e) => e.target.style.color = 'var(--accent-gold)'} onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}>Twitter</a>
+            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)'}}>Facebook</a>
+            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)'}}>Instagram</a>
+            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)'}}>Twitter</a>
           </div>
         </div>
       </footer>
