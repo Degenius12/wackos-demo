@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, CheckCircle, Award, Sparkles, Camera, ChevronLeft, Image as ImageIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,13 +53,19 @@ export default function Home() {
     ]
   };
 
+  type GalleryImage = {
+    file: string;
+    title: string;
+    description?: string;
+  };
+
   // Get current gallery images with proper paths
   const getCurrentGallery = () => {
-    return photoGalleries[activeGallery as keyof typeof photoGalleries].map(photo => ({
+    return (photoGalleries[activeGallery as keyof typeof photoGalleries] as GalleryImage[]).map(photo => ({
       ...photo,
       url: `/images/${activeGallery}/${photo.file}`,
-      // Fallback to placeholder if image doesn't exist yet
-      fallbackUrl: `https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&h=600&fit=crop&auto=format`
+      fallbackUrl: `https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&h=600&fit=crop&auto=format`,
+      description: photo.description ?? '',
     }));
   };
 
@@ -158,11 +165,12 @@ export default function Home() {
         <div className="rounded-lg p-8 max-w-md w-full text-center shadow-2xl glass-effect">
           <div className="mb-6">
             <div className="flex justify-center mb-6">
-              <img
+              <Image
                 src="/images/Wackos_logo2.png"
                 alt="Logo"
+                width={120} // adjust width as needed
+                height={60} // adjust height as needed
                 className="h-15 w-auto object-contain"
-                style={{height: '60px'}}
               />
             </div>
             <h1 className="text-3xl font-bold mb-2 heading-primary">Welcome</h1>
@@ -194,9 +202,11 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Logo Only */}
           <div className="flex items-center">
-            <img
+            <Image
               src="/images/Wackos_logo2.png"
               alt="Logo"
+              width={180}
+              height={96}
               className="h-24 w-auto object-contain"
             />
           </div>
@@ -379,10 +389,16 @@ export default function Home() {
           <div className="gallery-grid">
             {currentGallery.slice(0, 6).map((image, index) => (
               <div key={index} className="gallery-item" onClick={() => goToSlide(index)}>
-                <img src={image.url} alt={image.title} onError={(e) => {
-                  // Fallback to placeholder if image doesn't exist
-                  e.currentTarget.src = image.fallbackUrl || 'https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&h=300&fit=crop';
-                }} />
+                <Image
+                  src={image.url}
+                  alt={image.title}
+                  width={400}
+                  height={300}
+                  className="gallery-img"
+                  onError={(e) => {
+                    e.currentTarget.src = image.fallbackUrl || 'https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&h=300&fit=crop';
+                  }}
+                />
                 <div className="gallery-overlay">
                   <div>
                     <h4 className="carousel-title text-lg">{image.title}</h4>
@@ -617,9 +633,11 @@ export default function Home() {
       <footer className="border-t py-12 text-center" style={{backgroundColor: 'var(--background)', borderColor: 'rgba(255, 215, 0, 0.2)', color: 'var(--text-primary)'}}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center space-x-3 mb-6">
-            <img
+            <Image
               src="/images/Wackos_logo2.png"
               alt="Logo"
+              width={64}
+              height={64}
               className="h-16 w-auto object-contain"
             />
           </div>
