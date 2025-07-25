@@ -7,7 +7,7 @@ import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, Ute
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [showAgeVerification, setShowAgeVerification] = useState(true);
+  const [showAgeVerification, setShowAgeVerification] = useState(false);
 
   const menuItems = [
     {
@@ -116,7 +116,7 @@ export default function Home() {
             <img
               src="/images/Wackos_logo2.png"
               alt="Wacko's Logo"
-              className="h-12 w-auto object-contain"
+              className="h-24 w-auto object-contain"
             />
           </div>
           
@@ -417,7 +417,7 @@ export default function Home() {
             <img
               src="/images/Wackos_logo2.png"
               alt="Wacko's Logo"
-              className="h-8 w-auto object-contain"
+              className="h-16 w-auto object-contain"
             />
           </div>
           <p className="mb-6 text-lg" style={{color: 'var(--text-secondary)'}}>
