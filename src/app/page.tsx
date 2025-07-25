@@ -109,7 +109,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{backgroundColor: 'var(--background)'}}>
       {/* Header */}
-      <header className="border-b shadow-lg relative z-50" style={{backgroundColor: 'var(--section-bg)', borderColor: 'rgba(191, 160, 99, 0.2)', color: 'var(--text-primary)'}}>
+      <header className="border-b shadow-lg relative z-50" style={{backgroundColor: 'var(--section-bg)', borderColor: 'rgba(255, 215, 0, 0.2)', color: 'var(--text-primary)'}}>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Logo Only */}
           <div className="flex items-center">
@@ -126,12 +126,16 @@ export default function Home() {
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`capitalize transition-all duration-300 font-medium hover:opacity-80 ${
+                className={`capitalize transition-all duration-300 font-medium nav-item ${
                   activeSection === section ? 'border-b-2' : ''
                 }`}
                 style={{
-                  color: activeSection === section ? 'var(--accent-gold)' : 'var(--text-primary)',
-                  borderColor: activeSection === section ? 'var(--accent-gold)' : 'transparent'
+                  color: activeSection === section ? 'var(--accent-yellow)' : 'var(--text-primary)',
+                  borderColor: activeSection === section ? 'var(--accent-yellow)' : 'transparent',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: '500',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px'
                 }}
               >
                 {section}
@@ -143,7 +147,7 @@ export default function Home() {
           <button
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            style={{color: 'var(--accent-gold)'}}
+            style={{color: 'var(--accent-yellow)'}}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -151,13 +155,19 @@ export default function Home() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t" style={{backgroundColor: 'var(--card-surface)', borderColor: 'rgba(191, 160, 99, 0.2)'}}>
+          <nav className="md:hidden py-4 border-t" style={{backgroundColor: 'var(--card-surface)', borderColor: 'rgba(255, 215, 0, 0.2)'}}>
             {['home', 'menu', 'about', 'reviews', 'contact'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="block w-full text-left px-4 py-3 capitalize transition-colors hover:opacity-80"
-                style={{color: 'var(--text-primary)'}}
+                className="block w-full text-left px-4 py-3 capitalize transition-colors nav-item"
+                style={{
+                  color: 'var(--text-primary)',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: '500',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px'
+                }}
               >
                 {section}
               </button>
@@ -197,17 +207,17 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center card-premium p-8">
-              <Award className="h-16 w-16 mx-auto mb-6" style={{color: 'var(--accent-gold)'}} />
+              <Award className="h-16 w-16 mx-auto mb-6" style={{color: 'var(--accent-yellow)'}} />
               <h3 className="text-2xl font-bold mb-4 heading-secondary">Premium Experience</h3>
               <p className="leading-relaxed" style={{color: 'var(--text-secondary)'}}>Exceptional service and sophisticated atmosphere that sets the standard for excellence.</p>
             </div>
             <div className="text-center card-premium p-8">
-              <Users className="h-16 w-16 mx-auto mb-6" style={{color: 'var(--accent-gold)'}} />
+              <Users className="h-16 w-16 mx-auto mb-6" style={{color: 'var(--accent-yellow)'}} />
               <h3 className="text-2xl font-bold mb-4 heading-secondary">VIP Entertainment</h3>
               <p className="leading-relaxed" style={{color: 'var(--text-secondary)'}}>World-class performers and exclusive entertainment in an upscale setting.</p>
             </div>
             <div className="text-center card-premium p-8">
-              <Camera className="h-16 w-16 mx-auto mb-6" style={{color: 'var(--accent-gold)'}} />
+              <Camera className="h-16 w-16 mx-auto mb-6" style={{color: 'var(--accent-yellow)'}} />
               <h3 className="text-2xl font-bold mb-4 heading-secondary">Luxury Amenities</h3>
               <p className="leading-relaxed" style={{color: 'var(--text-secondary)'}}>Premium dining, craft cocktails, and first-class facilities throughout.</p>
             </div>
@@ -231,10 +241,10 @@ export default function Home() {
                 <h3 className="text-2xl font-bold mb-6 heading-secondary">{category.category}</h3>
                 <div className="space-y-6">
                   {category.items.map((item, itemIdx) => (
-                    <div key={itemIdx} className="border-b pb-4 last:border-b-0" style={{borderColor: 'rgba(191, 160, 99, 0.2)'}}>
+                    <div key={itemIdx} className="border-b pb-4 last:border-b-0" style={{borderColor: 'rgba(255, 215, 0, 0.2)'}}>
                       <div className="flex justify-between items-start mb-3">
-                        <h4 className="font-bold text-lg" style={{color: 'var(--text-primary)'}}>{item.name}</h4>
-                        <span className="font-bold text-lg" style={{color: 'var(--accent-gold)'}}>{item.price}</span>
+                        <h4 className="font-bold text-lg" style={{color: 'var(--text-primary)', fontFamily: 'var(--font-heading)'}}>{item.name}</h4>
+                        <span className="font-bold text-lg price-highlight">{item.price}</span>
                       </div>
                       <p className="leading-relaxed" style={{color: 'var(--text-secondary)'}}>{item.description}</p>
                     </div>
@@ -263,25 +273,25 @@ export default function Home() {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-gold)'}} />
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
                     <span style={{color: 'var(--text-primary)'}}>Premium craft cocktails and fine wines</span>
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-gold)'}} />
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
                     <span style={{color: 'var(--text-primary)'}}>Chef-curated menu with locally-sourced ingredients</span>
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-gold)'}} />
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
                     <span style={{color: 'var(--text-primary)'}}>World-class entertainment seven nights a week</span>
                   </div>
                   <div className="flex items-center">
-                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-gold)'}} />
+                    <CheckCircle className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
                     <span style={{color: 'var(--text-primary)'}}>VIP experiences and private event hosting</span>
                   </div>
                 </div>
               </div>
               <div className="card-premium p-10 text-center">
-                <Sparkles className="h-20 w-20 mx-auto mb-6" style={{color: 'var(--accent-gold)'}} />
+                <Sparkles className="h-20 w-20 mx-auto mb-6" style={{color: 'var(--accent-yellow)'}} />
                 <h3 className="text-3xl font-bold heading-secondary mb-6">The Wacko's Experience</h3>
                 <p className="leading-relaxed text-lg" style={{color: 'var(--text-secondary)'}}>
                   We're not just a venue - we're a destination. Every detail has been carefully curated 
@@ -306,11 +316,11 @@ export default function Home() {
               <div key={idx} className="card-premium p-8">
                 <div className="flex items-center mb-6">
                   {[...Array(review.rating)].map((_, starIdx) => (
-                    <Star key={starIdx} className="h-6 w-6 fill-current" style={{color: 'var(--accent-gold)'}} />
+                    <Star key={starIdx} className="h-6 w-6 fill-current" style={{color: 'var(--accent-yellow)'}} />
                   ))}
                 </div>
                 <p className="mb-6 italic leading-relaxed text-lg" style={{color: 'var(--text-secondary)'}}>"{review.text}"</p>
-                <p className="font-bold text-lg" style={{color: 'var(--accent-gold)'}}>— {review.name}</p>
+                <p className="font-bold text-lg" style={{color: 'var(--accent-yellow)', fontFamily: 'var(--font-heading)'}}">— {review.name}</p>
               </div>
             ))}
           </div>
@@ -329,15 +339,15 @@ export default function Home() {
               <h3 className="text-3xl font-bold mb-8 heading-secondary">Location & Hours</h3>
               <div className="space-y-6">
                 <div className="flex items-center">
-                  <MapPin className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-gold)'}} />
+                  <MapPin className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
                   <span style={{color: 'var(--text-primary)'}}>123 Premium Boulevard, Jacksonville, FL 32202</span>
                 </div>
                 <div className="flex items-center">
-                  <Phone className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-gold)'}} />
+                  <Phone className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
                   <span style={{color: 'var(--text-primary)'}}>(904) 555-WACKO</span>
                 </div>
                 <div className="flex items-start">
-                  <Clock className="h-6 w-6 mr-4 mt-1 flex-shrink-0" style={{color: 'var(--accent-gold)'}} />
+                  <Clock className="h-6 w-6 mr-4 mt-1 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
                   <div style={{color: 'var(--text-primary)'}}>
                     <p>Monday - Thursday: 7PM - 2AM</p>
                     <p>Friday - Saturday: 7PM - 3AM</p>
@@ -355,7 +365,7 @@ export default function Home() {
                   className="w-full px-4 py-4 rounded-lg border transition-colors"
                   style={{
                     backgroundColor: 'var(--background)',
-                    borderColor: 'rgba(191, 160, 99, 0.3)',
+                    borderColor: 'rgba(255, 215, 0, 0.3)',
                     color: 'var(--text-primary)'
                   }}
                 />
@@ -365,7 +375,7 @@ export default function Home() {
                   className="w-full px-4 py-4 rounded-lg border transition-colors"
                   style={{
                     backgroundColor: 'var(--background)',
-                    borderColor: 'rgba(191, 160, 99, 0.3)',
+                    borderColor: 'rgba(255, 215, 0, 0.3)',
                     color: 'var(--text-primary)'
                   }}
                 />
@@ -375,7 +385,7 @@ export default function Home() {
                   className="w-full px-4 py-4 rounded-lg border transition-colors"
                   style={{
                     backgroundColor: 'var(--background)',
-                    borderColor: 'rgba(191, 160, 99, 0.3)',
+                    borderColor: 'rgba(255, 215, 0, 0.3)',
                     color: 'var(--text-primary)'
                   }}
                 />
@@ -385,13 +395,13 @@ export default function Home() {
                     className="px-4 py-4 rounded-lg border transition-colors"
                     style={{
                       backgroundColor: 'var(--background)',
-                      borderColor: 'rgba(191, 160, 99, 0.3)',
+                      borderColor: 'rgba(255, 215, 0, 0.3)',
                       color: 'var(--text-primary)'
                     }}
                   />
                   <select className="px-4 py-4 rounded-lg border transition-colors" style={{
                     backgroundColor: 'var(--background)',
-                    borderColor: 'rgba(191, 160, 99, 0.3)',
+                    borderColor: 'rgba(255, 215, 0, 0.3)',
                     color: 'var(--text-primary)'
                   }}>
                     <option>Party Size</option>
@@ -411,7 +421,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t py-12 text-center" style={{backgroundColor: 'var(--background)', borderColor: 'rgba(191, 160, 99, 0.2)', color: 'var(--text-primary)'}}>
+      <footer className="border-t py-12 text-center" style={{backgroundColor: 'var(--background)', borderColor: 'rgba(255, 215, 0, 0.2)', color: 'var(--text-primary)'}}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <img
@@ -420,13 +430,13 @@ export default function Home() {
               className="h-16 w-auto object-contain"
             />
           </div>
-          <p className="mb-6 text-lg" style={{color: 'var(--text-secondary)'}}>
+          <p className="mb-6 text-lg" style={{color: 'var(--text-secondary)', fontFamily: 'var(--font-body)'}}>
             © 2024 Wacko's Gentlemen's Club. All rights reserved. | Follow us for exclusive events and specials.
           </p>
           <div className="flex justify-center space-x-8">
-            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)'}}>Facebook</a>
-            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)'}}>Instagram</a>
-            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)'}}>Twitter</a>
+            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)'}}>Facebook</a>
+            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)'}}>Instagram</a>
+            <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)'}}>Twitter</a>
           </div>
         </div>
       </footer>
