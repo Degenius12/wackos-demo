@@ -3,7 +3,6 @@
 
 import React, { useState } from 'react';
 import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, Utensils, CheckCircle, Award, Sparkles, Camera } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -78,12 +77,11 @@ export default function Home() {
         <div className="rounded-lg p-8 max-w-md w-full text-center shadow-2xl glass-effect">
           <div className="mb-6">
             <div className="flex justify-center mb-6">
-              <Image
+              <img
                 src="/images/Wackos_logos2.png"
                 alt="Wacko's Logo"
-                width={120}
-                height={60}
-                className="object-contain"
+                className="h-15 w-auto object-contain"
+                style={{height: '60px'}}
               />
             </div>
             <h1 className="text-3xl font-bold mb-2 heading-primary">Welcome to Wacko's</h1>
@@ -115,12 +113,10 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Logo Only */}
           <div className="flex items-center">
-            <Image
+            <img
               src="/images/Wackos_logos2.png"
               alt="Wacko's Logo"
-              width={150}
-              height={48}
-              className="object-contain h-12"
+              className="h-12 w-auto object-contain"
             />
           </div>
           
@@ -418,12 +414,10 @@ export default function Home() {
       <footer className="border-t py-12 text-center" style={{backgroundColor: 'var(--background)', borderColor: 'rgba(191, 160, 99, 0.2)', color: 'var(--text-primary)'}}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center space-x-3 mb-6">
-            <Image
+            <img
               src="/images/Wackos_logos2.png"
               alt="Wacko's Logo"
-              width={100}
-              height={32}
-              className="object-contain h-8"
+              className="h-8 w-auto object-contain"
             />
           </div>
           <p className="mb-6 text-lg" style={{color: 'var(--text-secondary)'}}>
