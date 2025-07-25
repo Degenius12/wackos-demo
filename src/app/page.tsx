@@ -1,12 +1,94 @@
 'use client';
 
-import React, { useState } from 'react';
-import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, CheckCircle, Award, Sparkles, Camera } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, CheckCircle, Award, Sparkles, Camera, ChevronLeft, Image as ImageIcon } from 'lucide-react';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [showAgeVerification, setShowAgeVerification] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeGallery, setActiveGallery] = useState('featured');
+
+  // Dynamic photo system - Easy to update by just adding image files
+  const photoGalleries = {
+    // Featured photos for main carousel (mix of best shots)
+    featured: [
+      { file: 'hero-interior-1.jpg', title: 'Elegant Main Lounge', description: 'Sophisticated atmosphere with premium furnishings' },
+      { file: 'event-party-1.jpg', title: 'Premium Events', description: 'Unforgettable celebrations in style' },
+      { file: 'menu-signature-1.jpg', title: 'Gourmet Cuisine', description: 'Chef-crafted dishes with premium ingredients' },
+      { file: 'interior-vip-1.jpg', title: 'VIP Experience', description: 'Exclusive areas for discerning guests' },
+      { file: 'event-celebration-1.jpg', title: 'Live Entertainment', description: 'World-class performances nightly' }
+    ],
+    
+    // Interior photos - just add files to /images/interior/
+    interior: [
+      { file: 'main-lounge.jpg', title: 'Main Lounge' },
+      { file: 'vip-area.jpg', title: 'VIP Area' },
+      { file: 'premium-bar.jpg', title: 'Premium Bar' },
+      { file: 'private-dining.jpg', title: 'Private Dining' },
+      { file: 'entrance-lobby.jpg', title: 'Grand Entrance' },
+      { file: 'stage-area.jpg', title: 'Performance Stage' }
+    ],
+    
+    // Event photos - just add files to /images/events/
+    events: [
+      { file: 'bachelor-party-1.jpg', title: 'Bachelor Parties' },
+      { file: 'corporate-event-1.jpg', title: 'Corporate Events' },
+      { file: 'birthday-celebration-1.jpg', title: 'Birthday Celebrations' },
+      { file: 'private-party-1.jpg', title: 'Private Parties' },
+      { file: 'vip-night-1.jpg', title: 'VIP Nights' },
+      { file: 'special-event-1.jpg', title: 'Special Events' }
+    ],
+    
+    // Menu photos - just add files to /images/menu/
+    menu: [
+      { file: 'wacko-classic-burger.jpg', title: 'The Wacko Classic' },
+      { file: 'premium-wings.jpg', title: 'Premium Wings' },
+      { file: 'truffle-fries.jpg', title: 'Truffle Loaded Fries' },
+      { file: 'craft-cocktails.jpg', title: 'Craft Cocktails' },
+      { file: 'fine-dining.jpg', title: 'Fine Dining Experience' },
+      { file: 'dessert-selection.jpg', title: 'Gourmet Desserts' }
+    ]
+  };
+
+  // Get current gallery images with proper paths
+  const getCurrentGallery = () => {
+    return photoGalleries[activeGallery as keyof typeof photoGalleries].map(photo => ({
+      ...photo,
+      url: `/images/${activeGallery}/${photo.file}`,
+      // Fallback to placeholder if image doesn't exist yet
+      fallbackUrl: `https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&h=600&fit=crop&auto=format`
+    }));
+  };
+
+  const currentGallery = getCurrentGallery();
+
+  // Auto-cycle through images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % currentGallery.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [currentGallery.length, activeGallery]);
+
+  // Reset slide when gallery changes
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [activeGallery]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % currentGallery.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + currentGallery.length) % currentGallery.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
 
   const menuItems = [
     {
@@ -121,7 +203,7 @@ export default function Home() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {['home', 'menu', 'about', 'reviews', 'contact'].map((section) => (
+            {['home', 'gallery', 'menu', 'about', 'reviews', 'contact'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -155,7 +237,7 @@ export default function Home() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden py-4 border-t" style={{backgroundColor: 'var(--card-surface)', borderColor: 'rgba(255, 215, 0, 0.2)'}}>
-            {['home', 'menu', 'about', 'reviews', 'contact'].map((section) => (
+            {['home', 'gallery', 'menu', 'about', 'reviews', 'contact'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -186,10 +268,10 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <button 
-              onClick={() => scrollToSection('menu')}
+              onClick={() => scrollToSection('gallery')}
               className="btn-primary px-8 py-4 font-semibold inline-flex items-center justify-center text-lg"
             >
-              View Premium Menu <ChevronRight className="ml-2 h-5 w-5" />
+              View Gallery <Camera className="ml-2 h-5 w-5" />
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
@@ -197,6 +279,118 @@ export default function Home() {
             >
               <Calendar className="mr-2 h-5 w-5" /> Reserve VIP Experience
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Dynamic Gallery System */}
+      <section id="gallery" className="py-20" style={{backgroundColor: 'var(--background)'}}>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold heading-primary mb-4" style={{color: 'var(--text-primary)'}}>Experience Excellence</h2>
+            <div className="divider-gold w-24 mx-auto mb-6"></div>
+            <p className="text-lg max-w-2xl mx-auto" style={{color: 'var(--text-secondary)'}}>
+              Discover the sophistication and luxury that defines our venue
+            </p>
+          </div>
+
+          {/* Gallery Category Selector */}
+          <div className="flex justify-center mb-12">
+            <div className="flex space-x-2 bg-black/20 p-2 rounded-lg">
+              {[
+                { key: 'featured', label: 'Featured', icon: Sparkles },
+                { key: 'interior', label: 'Interior', icon: Award },
+                { key: 'events', label: 'Events', icon: Users },
+                { key: 'menu', label: 'Menu', icon: ImageIcon }
+              ].map(({ key, label, icon: Icon }) => (
+                <button
+                  key={key}
+                  onClick={() => setActiveGallery(key)}
+                  className={`px-6 py-3 rounded-lg transition-all duration-300 inline-flex items-center gap-2 ${
+                    activeGallery === key 
+                      ? 'btn-primary' 
+                      : 'bg-transparent border border-yellow-500/30 text-white hover:border-yellow-500'
+                  }`}
+                  style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontWeight: '600',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}
+                >
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Main Carousel */}
+          <div className="max-w-6xl mx-auto">
+            <div className="premium-carousel" style={{height: '500px'}}>
+              <div className="carousel-container">
+                {currentGallery.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`carousel-slide ${index === currentSlide ? 'active' : ''}`}
+                    style={{
+                      backgroundImage: `url(${image.url})`,
+                    }}
+                  >
+                    <div className="carousel-overlay">
+                      <div>
+                        <h3 className="carousel-title">{image.title}</h3>
+                        <p className="carousel-description">{image.description || ''}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                
+                {/* Navigation Controls */}
+                <button
+                  onClick={prevSlide}
+                  className="carousel-controls carousel-prev"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                
+                <button
+                  onClick={nextSlide}
+                  className="carousel-controls carousel-next"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+                
+                {/* Indicators */}
+                <div className="carousel-indicators">
+                  {currentGallery.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="gallery-grid">
+            {currentGallery.slice(0, 6).map((image, index) => (
+              <div key={index} className="gallery-item" onClick={() => goToSlide(index)}>
+                <img src={image.url} alt={image.title} onError={(e) => {
+                  // Fallback to placeholder if image doesn't exist
+                  e.currentTarget.src = image.fallbackUrl || 'https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&h=300&fit=crop';
+                }} />
+                <div className="gallery-overlay">
+                  <div>
+                    <h4 className="carousel-title text-lg">{image.title}</h4>
+                    <p className="text-sm" style={{color: 'var(--text-secondary)'}}>{image.description || ''}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
