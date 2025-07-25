@@ -1,5 +1,4 @@
 'use client';
-/* eslint-disable react/no-unescaped-entities */
 
 import React, { useState } from 'react';
 import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, Utensils, CheckCircle, Award, Sparkles, Camera } from 'lucide-react';
@@ -45,7 +44,7 @@ export default function Home() {
     {
       name: 'Alexandra S.',
       rating: 5,
-      text: 'Wacko\'s has transformed into something truly special. The attention to detail is remarkable.'
+      text: 'The club has transformed into something truly special. The attention to detail is remarkable.'
     },
     {
       name: 'David K.',
@@ -79,12 +78,12 @@ export default function Home() {
             <div className="flex justify-center mb-6">
               <img
                 src="/images/Wackos_logo2.png"
-                alt="Wacko's Logo"
+                alt="Logo"
                 className="h-15 w-auto object-contain"
                 style={{height: '60px'}}
               />
             </div>
-            <h1 className="text-3xl font-bold mb-2 heading-primary">Welcome to Wacko's</h1>
+            <h1 className="text-3xl font-bold mb-2 heading-primary">Welcome</h1>
             <p style={{color: 'var(--text-secondary)'}}>Are you 21 years of age or older?</p>
           </div>
           <div className="space-y-3">
@@ -92,13 +91,13 @@ export default function Home() {
               onClick={() => handleAgeVerification(true)}
               className="w-full btn-primary py-3 px-6 transition-all duration-300"
             >
-              Yes, I'm 21 or older
+              Yes, I am 21 or older
             </button>
             <button
               onClick={() => handleAgeVerification(false)}
               className="w-full btn-secondary py-3 px-6 transition-all duration-300"
             >
-              No, I'm under 21
+              No, I am under 21
             </button>
           </div>
         </div>
@@ -115,7 +114,7 @@ export default function Home() {
           <div className="flex items-center">
             <img
               src="/images/Wackos_logo2.png"
-              alt="Wacko's Logo"
+              alt="Logo"
               className="h-24 w-auto object-contain"
             />
           </div>
@@ -133,7 +132,7 @@ export default function Home() {
                   color: activeSection === section ? 'var(--accent-yellow)' : 'var(--text-primary)',
                   borderColor: activeSection === section ? 'var(--accent-yellow)' : 'transparent',
                   fontFamily: 'var(--font-heading)',
-                  fontWeight: '500',
+                  fontWeight: '700',
                   textTransform: 'uppercase',
                   letterSpacing: '1px'
                 }}
@@ -180,9 +179,9 @@ export default function Home() {
       <section id="home" className="py-24 relative overflow-hidden" style={{background: `linear-gradient(to right, var(--background), var(--section-bg), var(--card-surface))`, color: 'var(--text-primary)'}}>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-6xl font-bold mb-6 heading-primary fade-in-up">Welcome to Wacko's</h2>
+          <h2 className="text-6xl font-bold mb-6 heading-primary fade-in-up">Welcome to Premium Entertainment</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto leading-relaxed" style={{color: 'var(--text-secondary)'}}>
-            Experience sophisticated dining and entertainment in Jacksonville's premier gentlemen's club. 
+            Experience sophisticated dining and entertainment in Jacksonville premier venue. 
             Where elegance meets excitement.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -261,14 +260,14 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold heading-primary mb-4" style={{color: 'var(--text-primary)'}}>About Wacko's</h2>
+              <h2 className="text-5xl font-bold heading-primary mb-4" style={{color: 'var(--text-primary)'}}>About Our Venue</h2>
               <div className="divider-gold w-24 mx-auto"></div>
             </div>
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <p className="mb-8 text-lg leading-relaxed" style={{color: 'var(--text-secondary)'}}>
-                  Since 2010, Wacko's has redefined the gentlemen's club experience in Jacksonville. 
-                  We've created a sophisticated sanctuary where discerning guests enjoy world-class entertainment, 
+                  Since 2010, our venue has redefined the premium experience in Jacksonville. 
+                  We have created a sophisticated sanctuary where discerning guests enjoy world-class entertainment, 
                   premium dining, and unparalleled service.
                 </p>
                 <div className="space-y-4">
@@ -292,9 +291,9 @@ export default function Home() {
               </div>
               <div className="card-premium p-10 text-center">
                 <Sparkles className="h-20 w-20 mx-auto mb-6" style={{color: 'var(--accent-yellow)'}} />
-                <h3 className="text-3xl font-bold heading-secondary mb-6">The Wacko's Experience</h3>
+                <h3 className="text-3xl font-bold heading-secondary mb-6">The Premium Experience</h3>
                 <p className="leading-relaxed text-lg" style={{color: 'var(--text-secondary)'}}>
-                  We're not just a venue - we're a destination. Every detail has been carefully curated 
+                  We are not just a venue - we are a destination. Every detail has been carefully curated 
                   to provide an unforgettable experience that exceeds expectations.
                 </p>
               </div>
@@ -320,7 +319,7 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="mb-6 italic leading-relaxed text-lg" style={{color: 'var(--text-secondary)'}}>"{review.text}"</p>
-                <p className="font-bold text-lg" style={{color: 'var(--accent-yellow)', fontFamily: 'var(--font-heading)'}}">— {review.name}</p>
+                <p className="font-bold text-lg" style={{color: 'var(--accent-yellow)', fontFamily: 'var(--font-heading)'}}>— {review.name}</p>
               </div>
             ))}
           </div>
@@ -344,7 +343,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center">
                   <Phone className="h-6 w-6 mr-4 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
-                  <span style={{color: 'var(--text-primary)'}}>(904) 555-WACKO</span>
+                  <span style={{color: 'var(--text-primary)'}}>(904) 555-CLUB</span>
                 </div>
                 <div className="flex items-start">
                   <Clock className="h-6 w-6 mr-4 mt-1 flex-shrink-0" style={{color: 'var(--accent-yellow)'}} />
@@ -426,12 +425,12 @@ export default function Home() {
           <div className="flex items-center justify-center space-x-3 mb-6">
             <img
               src="/images/Wackos_logo2.png"
-              alt="Wacko's Logo"
+              alt="Logo"
               className="h-16 w-auto object-contain"
             />
           </div>
           <p className="mb-6 text-lg" style={{color: 'var(--text-secondary)', fontFamily: 'var(--font-body)'}}>
-            © 2024 Wacko's Gentlemen's Club. All rights reserved. | Follow us for exclusive events and specials.
+            © 2024 Premium Entertainment Venue. All rights reserved.
           </p>
           <div className="flex justify-center space-x-8">
             <a href="#" className="transition-colors text-lg hover:opacity-80" style={{color: 'var(--text-secondary)', fontFamily: 'var(--font-heading)'}}>Facebook</a>
