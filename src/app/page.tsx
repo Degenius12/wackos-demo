@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import { ChevronRight, MapPin, Clock, Phone, Star, Menu, X, Calendar, Users, Utensils, CheckCircle, Award, Sparkles, Camera } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -76,7 +77,15 @@ export default function Home() {
       <div className="min-h-screen flex items-center justify-center p-4" style={{backgroundColor: 'var(--background)'}}>
         <div className="rounded-lg p-8 max-w-md w-full text-center shadow-2xl glass-effect">
           <div className="mb-6">
-            <Sparkles className="h-16 w-16 mx-auto mb-4" style={{color: 'var(--accent-gold)'}} />
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/images/wackos_logo2.png"
+                alt="Wacko's Logo"
+                width={120}
+                height={60}
+                className="object-contain"
+              />
+            </div>
             <h1 className="text-3xl font-bold mb-2 heading-primary">Welcome to Wacko's</h1>
             <p style={{color: 'var(--text-secondary)'}}>Are you 21 years of age or older?</p>
           </div>
@@ -104,11 +113,15 @@ export default function Home() {
       {/* Header */}
       <header className="border-b shadow-lg relative z-50" style={{backgroundColor: 'var(--section-bg)', borderColor: 'rgba(191, 160, 99, 0.2)', color: 'var(--text-primary)'}}>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <div className="h-8 w-8 rounded flex items-center justify-center" style={{backgroundColor: 'var(--accent-gold)'}}>
-              <span className="font-bold text-lg" style={{color: 'var(--background)'}}>W</span>
-            </div>
-            <h1 className="text-2xl font-bold heading-primary">Wacko's Gentlemen's Club</h1>
+          {/* Logo Only */}
+          <div className="flex items-center">
+            <Image
+              src="/images/wackos_logo2.png"
+              alt="Wacko's Logo"
+              width={150}
+              height={48}
+              className="object-contain h-12"
+            />
           </div>
           
           {/* Desktop Navigation */}
@@ -405,10 +418,13 @@ export default function Home() {
       <footer className="border-t py-12 text-center" style={{backgroundColor: 'var(--background)', borderColor: 'rgba(191, 160, 99, 0.2)', color: 'var(--text-primary)'}}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center space-x-3 mb-6">
-            <div className="h-8 w-8 rounded flex items-center justify-center" style={{backgroundColor: 'var(--accent-gold)'}}>
-              <span className="font-bold text-lg" style={{color: 'var(--background)'}}>W</span>
-            </div>
-            <span className="text-2xl font-bold heading-primary">Wacko's Gentlemen's Club</span>
+            <Image
+              src="/images/wackos_logo2.png"
+              alt="Wacko's Logo"
+              width={100}
+              height={32}
+              className="object-contain h-8"
+            />
           </div>
           <p className="mb-6 text-lg" style={{color: 'var(--text-secondary)'}}>
             © 2024 Wacko's Gentlemen's Club. All rights reserved. | Follow us for exclusive events and specials.
