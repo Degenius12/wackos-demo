@@ -78,7 +78,7 @@ export default function Home() {
           <div className="mb-6">
             <div className="flex justify-center mb-6">
               <img
-                src="/images/Wackos_logos2.png"
+                src="/images/Wackos_logo2.png"
                 alt="Wacko's Logo"
                 className="h-15 w-auto object-contain"
                 style={{height: '60px'}}
@@ -114,7 +114,7 @@ export default function Home() {
           {/* Logo Only */}
           <div className="flex items-center">
             <img
-              src="/images/Wackos_logos2.png"
+              src="/images/Wackos_logo2.png"
               alt="Wacko's Logo"
               className="h-12 w-auto object-contain"
             />
@@ -415,7 +415,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <img
-              src="/images/Wackos_logos2.png"
+              src="/images/Wackos_logo2.png"
               alt="Wacko's Logo"
               className="h-8 w-auto object-contain"
             />
